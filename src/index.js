@@ -14,7 +14,17 @@ const routes = {
   "ghcr.cndou.top": "https://ghcr.io",
   "cloudsmith.cndou.top": "https://docker.cloudsmith.io",
 };
-
+import DOCS from './help.html'
+ 
+// return docs
+if (url.pathname === "/") {
+  return new Response(DOCS, {
+    status: 200,
+    headers: {
+      "content-type": "text/html"
+    }
+  });
+}
 function routeByHosts(host) {
   if (host in routes) {
     return routes[host];
